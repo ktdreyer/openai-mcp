@@ -1,0 +1,9 @@
+[project]
+name = "openai-mcp"
+version = "0.1.0"
+description = "Demo OpenAI MCP server"
+readme = "README.md"
+dependencies = [
+    "openai",
+    "mcp[cli]",
+]
