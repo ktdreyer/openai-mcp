@@ -13,6 +13,9 @@ mcp = FastMCP("openai", debug=True)
 read_client = AsyncOpenAI(api_key=os.environ["OPENAI_ADMIN_KEY_READ"])
 write_client = AsyncOpenAI(api_key=os.environ["OPENAI_ADMIN_KEY_WRITE"])
 
+# Optional: default project to add users to when inviting
+DEFAULT_PROJECT_ID = os.environ.get("OPENAI_DEFAULT_PROJECT_ID")
+
 logger = get_logger(__name__)
 logger.setLevel(level=logging.INFO)
 
@@ -86,12 +89,20 @@ async def invite_reader(email: str) -> dict:
     Returns information about the newly-created invite for this user.
     """
     logger.info(f"inviting {email} as a reader")
+
+    body = {"email": email, "role": "reader"}
+
+    # Add default project if configured
+    if DEFAULT_PROJECT_ID:
+        body["projects"] = [{"id": DEFAULT_PROJECT_ID, "role": "member"}]
+        logger.info(f"including default project {DEFAULT_PROJECT_ID}")
+
     # We must use the lower-level post() method because the
     # stainless-generated OpenAI Python client has no higher-level native
     # Python methods yet.
     response = await write_client.post(
         "/organization/invites",
-        body={"email": email, "role": "reader"},
+        body=body,
         cast_to=object,
     )
     logger.info(f"invited {response['email']}, id {response['id']}")

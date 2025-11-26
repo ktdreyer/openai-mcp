@@ -46,6 +46,11 @@ export OPENAI_ADMIN_KEY_READ="sk-admin-your-read-key-here"
 export OPENAI_ADMIN_KEY_WRITE="sk-admin-your-write-key-here"
 ```
 
+Optionally, set a default project ID to automatically add invited users as members:
+```bash
+export OPENAI_DEFAULT_PROJECT_ID="proj_abc123..."
+```
+
 ## Usage
 
 For development with MCP inspector, run:
@@ -64,10 +69,5 @@ uv run main.py
 
 (see `main.py` method docstrings for details)
 
-- `invite_reader(email)` - Invite a user to your OpenAI organization as a reader
+- `invite_reader(email)` - Invite a user to your OpenAI organization as a reader (optionally adds them to the default project if `OPENAI_DEFAULT_PROJECT_ID` is set)
 - `retrieve_invite(email)` - Retrieve an invite for a specific email address
-
-## TODO
-
-Invite the user to the default project as well when sending the invite. (This
-is a common confusing issue for new openai users.)
