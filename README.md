@@ -66,3 +66,8 @@ uv run main.py
 
 - `invite_reader(email)` - Invite a user to your OpenAI organization as a reader
 - `retrieve_invite(email)` - Retrieve an invite for a specific email address
+
+## TODO
+
+Invite the user to the default project as well when sending the invite. (This
+is a common confusing issue for new openai users.)
