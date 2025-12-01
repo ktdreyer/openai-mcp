@@ -1,5 +1,7 @@
 This is an OpenAI organization management MCP server that allows you to invite users to your OpenAI organization.
 
+Tired of inviting users to your OpenAI org by hand? Tell your LLM to do it for you.
+
 ## Example Queries
 
 Once connected to an LLM, you can ask natural language questions like:
