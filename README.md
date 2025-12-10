@@ -38,7 +38,7 @@ Create two restricted OpenAI admin keys at https://platform.openai.com/settings/
 1. Read key with `api.management.read` scope
 2. Write key with `api.management.write` scope
 
-(This is an OpenAI limitatino - a single restricted key cannot GET and POST the URL we need.)
+(This is an OpenAI limitation - a single restricted key cannot GET and POST the URL we need.)
 
 ## Setup
 
